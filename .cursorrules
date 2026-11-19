@@ -1,0 +1,17 @@
+You are building the ROOMIE AI Japan demo: a client-only Vite + React + TypeScript app.
+
+Rules:
+- No backend, no network calls, no real AI APIs.
+- Japanese UI copy lives only in src/i18n/ja.ts. Never hardcode Japanese strings in components or domain code.
+- Use polite Japanese (丁寧語・敬語). Do not use slang or emoji in bot replies.
+- All money is integer yen. Format for display with src/i18n/format.ts only.
+- All date logic uses Asia/Tokyo. Never use the device's local time zone for business rules.
+- Normalize all user input with NFKC before parsing.
+- Chat Enter-to-send must ignore events during IME composition (isComposing).
+- Business logic lives in src/domain and src/bot as pure functions. Components only render and dispatch.
+- Bot must never confirm vacancy, fees, screening, 重要事項説明, or contract terms. Hand those to staff.
+- Never ask about nationality, family status, gender, age, disability, welfare status, or religion.
+- Bookings are always 仮予約 in the demo, never 予約確定.
+- Sample data only. Label listings as サンプル. No real names, phone numbers, addresses.
+- Every domain or bot function needs a test. Use TypeScript strict. No `any`.
+- Do not add features outside TECHNICAL_DESIGN_JP.md. Ask first.

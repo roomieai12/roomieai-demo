@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased;
+    font-size: 15px;
+    line-height: 1.7;
+    font-feature-settings: "palt" 0;
+  }
+  :focus-visible {
+    outline: 3px solid #f2b705;
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  /*
+   * Chat bubbles. Japanese already wraps between characters, so we do NOT use
+   * word-break: break-all (it splits "86,000円" and "11:00" mid-number).
+   * line-break: strict applies 禁則処理 (no line starting with 、。ー etc.),
+   * auto-phrase breaks at 文節 boundaries where supported (Chromium 119+),
+   * and overflow-wrap: anywhere is the fallback for long unbroken strings.
+   */
+  .bubble-text {
+    word-break: normal;
+    line-break: strict;
+    overflow-wrap: anywhere;
+    white-space: pre-wrap;
+  }
+  @supports (word-break: auto-phrase) {
+    .bubble-text {
+      word-break: auto-phrase;
+    }
+  }
+  .card {
+    @apply rounded-2xl border border-navy/10 bg-white shadow-sm;
+  }
+  .card-title {
+    @apply flex items-center gap-2 text-[15px] font-bold text-navy;
+  }
+  .chat-bg {
+    background-color: #dfe7f0;
+    background-image: radial-gradient(rgba(11, 29, 51, 0.05) 1px, transparent 1px);
+    background-size: 14px 14px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .msg-in {
+    animation: msg-in 220ms ease-out both;
+  }
+  @keyframes msg-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
