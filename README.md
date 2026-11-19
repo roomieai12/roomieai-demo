@@ -1,4 +1,4 @@
-# ROOMIE AI Japan Demo
+# ROOMIE AI Demo
 
 A demo of ROOMIE AI for Japanese property management companies. A renter chats with a bot to find an apartment and request a viewing, while the management company watches inquiries come in on a dashboard.
 
